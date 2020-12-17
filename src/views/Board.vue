@@ -3,15 +3,15 @@
     <!-- <header>{{ $route.params.name }}</header> -->
     <v-container class="my-2">
       <v-layout row class="mt-1">
-        <v-flex v-for="list in boardLists" :key="list.id" xs8 md4 lg2>
-            <div v-if="list.archived===false">
+        <v-flex v-for="list in nonArchivedLists" :key="list.id" xs8 md4 lg2>
+            <div >
               <BoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
             </div>
         </v-flex>
         <v-flex xs8 md4 lg2 class="mt-2">
           <v-card
               outlined
-              min-height="55"
+              min-height="100"
               elevation="7"
               color="white"
               block
@@ -40,8 +40,14 @@ export default {
       variableAtParent: this.$route.params.id,
       boardLists: [],
       isModalVisible: true
-    }
-  },
+      }
+    },
+    computed: {
+    nonArchivedLists: function () {
+      return this.boardLists.filter(function (list) {
+        return list.archived === false
+      })
+    } },
     created () {
         getAPI.post('/boards/lists', { id: this.$route.params.id }, {
           headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
