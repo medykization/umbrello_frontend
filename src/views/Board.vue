@@ -8,6 +8,21 @@
               <BoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
             </div>
         </v-flex>
+        <v-flex xs8 md4 lg2 class="mt-2">
+          <v-card
+              outlined
+              min-height="55"
+              elevation="7"
+              color="white"
+              block
+              class="ma-2 pa-3"
+              min-width="100">
+            <v-card-actions>
+              <!-- <v-btn color="blue" text> + Add new list </v-btn> -->
+              <modal v-show="isModalVisible"/>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
       </v-layout>
     </v-container>
   </div>
@@ -19,7 +34,8 @@ export default {
     components: { BoardList },
     data () {
     return {
-      boardLists: []
+      boardLists: [],
+      isModalVisible: false
     }
   },
     created () {
