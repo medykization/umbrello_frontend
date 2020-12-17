@@ -7,6 +7,7 @@ import dashboard from './views/DashBoard'
 import logout from './views/Logout'
 import about from './views/About'
 import board from './views/Board'
+import boardArchived from './views/BoardArchived'
 
 Vue.use(Router)
 
@@ -60,6 +61,14 @@ export default new Router({
       path: '/board/:id/:name',
       name: 'board',
       component: board,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/board/:id/:name/archived',
+      name: 'boardArchived',
+      component: boardArchived,
       meta: {
         requiresAuth: true
       }

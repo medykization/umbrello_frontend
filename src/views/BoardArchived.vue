@@ -1,48 +1,22 @@
 <template>
     <div fluid fill-height>
-    <!--  -->
-    <v-app-bar
-      flat
-      color="rgb(0, 0, 0, 0.2)"
-    >
-      <v-toolbar-title>{{ $route.params.name }}</v-toolbar-title>
-      <v-btn icon @click="routeArchived()" type="button">
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-    </v-app-bar>
+    <!-- <header>{{ $route.params.name }}</header> -->
     <v-container class="my-2">
       <v-layout row class="mt-1">
-        <v-flex v-for="list in nonArchivedLists" :key="list.id" xs8 md4 lg2>
+        <v-flex v-for="list in archivedLists" :key="list.id" xs8 md4 lg2>
             <div >
               <BoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
             </div>
-        </v-flex>
-        <v-flex xs8 md4 lg2 class="ma-2">
-          <v-card
-              min-height="120"
-              elevation="7"
-              color="white"
-              block
-              class="ma-2 pa-3"
-              min-width="100">
-            <v-card-actions>
-                <v-card-actions>
-                  <modal v-show="isModalVisible" :boardid="variableAtParent"/>
-                </v-card-actions>
-            </v-card-actions>
-          </v-card>
         </v-flex>
       </v-layout>
     </v-container>
   </div>
 </template>
 <script>
-import BoardList from '../components/BoardList.vue'
+import BoardList from '../components/ArchivedList.vue'
 import { getAPI } from '../api/axios-base'
-import modal from '../components/ListAddModal.vue'
 export default {
-    components: { BoardList,
-    modal },
+    components: { BoardList },
     data () {
     return {
       variableAtParent: this.$route.params.id,
@@ -51,9 +25,9 @@ export default {
       }
     },
     computed: {
-    nonArchivedLists: function () {
+    archivedLists: function () {
       return this.boardLists.filter(function (list) {
-        return list.archived === false
+        return list.archived === true
       })
     } },
     created () {
@@ -69,13 +43,6 @@ export default {
           .catch(err => { // refresh token expired or some other error status
             console.log(err)
           })
-    },
-    methods: {
-      routeArchived () {
-          var archivedURL = '/board/'
-          archivedURL = archivedURL.concat(this.$route.params.id, '/', this.$route.params.name, '/archived')
-          this.$router.push({ path: archivedURL })
-        }
-      }
+    }
 }
 </script>
