@@ -18,8 +18,9 @@
               class="ma-2 pa-3"
               min-width="100">
             <v-card-actions>
-              <!-- <v-btn color="blue" text> + Add new list </v-btn> -->
-              <modal v-show="isModalVisible"/>
+                <v-card-actions>
+                  <modal v-show="isModalVisible" :boardid="variableAtParent"/>
+                </v-card-actions>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -30,12 +31,15 @@
 <script>
 import BoardList from '../components/BoardList.vue'
 import { getAPI } from '../api/axios-base'
+import modal from '../components/ListAddModal.vue'
 export default {
-    components: { BoardList },
+    components: { BoardList,
+    modal },
     data () {
     return {
+      variableAtParent: this.$route.params.id,
       boardLists: [],
-      isModalVisible: false
+      isModalVisible: true
     }
   },
     created () {
