@@ -22,19 +22,19 @@
             </template>
 
             <v-list>
-            <v-list-item link>
+              <v-list-item link>
                 <v-list-item-title>
-                        Add card...
+                        <cardAddModal v-show="isCardAddModalVisible" :listid="variableAtParent"/>
                 </v-list-item-title>
               </v-list-item>
               <v-list-item link>
                 <v-list-item-title>
                     <v-list-item-action>
-                        <modal v-show="isModalVisible" :listid="variableAtParent"/>
+                        <listEditModal v-show="isListEditModalVisible" :listid="variableAtParent"/>
                     </v-list-item-action>
                 </v-list-item-title>
               </v-list-item>
-            <v-list-item
+              <v-list-item
                 link
                 @click="archivizeList">
                 <v-list-item-title>
@@ -59,17 +59,20 @@
 </template>
 <script>
 import ListCard from './ListCard.vue'
-import modal from './ListEditModal.vue'
+import listEditModal from './ListEditModal.vue'
+import cardAddModal from './CardAddModal.vue'
 import { getAPI } from '../../api/axios-base'
 export default {
     components: {
-      modal,
+      listEditModal,
+      cardAddModal,
       ListCard
     },
     props: ['listName', 'listid', 'isArchived'],
     data () {
       return {
-        isModalVisible: true,
+        isCardAddModalVisible: true,
+        isListEditModalVisible: true,
         variableAtParent: this.listid,
         cards: []
       }

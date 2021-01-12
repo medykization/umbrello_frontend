@@ -3,7 +3,7 @@
     <!-- <header>{{ $route.params.name }}</header> -->
     <v-container class="my-2">
       <v-layout row class="mt-1">
-        <v-flex v-for="list in archivedLists" :key="list.id" xs8 md4 lg2>
+        <v-flex v-for="list in archivedLists" :key="list.id" xs8 md4 lg3>
             <div >
               <BoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
             </div>
