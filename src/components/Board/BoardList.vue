@@ -3,11 +3,11 @@
         elevation="5"
         block
         min-height="100"
-        min-width="100"
-        max-width="300"
+        min-width="250"
+        max-width="250"
         class="ma-4">
         <v-card-title class="grey lighten-5">
-            <h5>{{listName}}</h5>
+            <h6>{{listName}}</h6>
             <v-spacer></v-spacer>
             <v-menu bottom left>
             <template v-slot:activator="{ on, attrs }">

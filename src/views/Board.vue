@@ -32,11 +32,11 @@
     </v-app-bar>
     <v-container class="my-2">
       <v-layout row class="mt-1">
-        <v-flex v-for="list in nonArchivedLists" :key="list.id" xs8 md4 lg3>
-            <div >
+        <Container v-for="list in nonArchivedLists" :key="list.id" xs8 md4 lg3>
+            <Draggable>
               <BoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
-            </div>
-        </v-flex>
+            </Draggable>
+        </Container>
         <v-flex xs8 md4 lg3 class="ma-2">
           <v-card
               min-height="120"
@@ -60,9 +60,13 @@
 import BoardList from '../components/Board/BoardList.vue'
 import { getAPI } from '../api/axios-base'
 import modal from '../components/Board/ListAddModal.vue'
+import { Draggable, Container } from 'vue-smooth-dnd'
 export default {
-    components: { BoardList,
-    modal },
+    components: {
+      BoardList,
+      modal,
+      Draggable,
+      Container },
     data () {
     return {
       variableAtParent: this.$route.params.id,
