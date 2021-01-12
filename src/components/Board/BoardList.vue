@@ -44,9 +44,11 @@
             </v-list>
           </v-menu>
         </v-card-title>
-        <div v-for="card in cards" :key="card.id">
+        <container>
+        <Draggable v-for="card in cards" :key="card.id">
           <ListCard :card_name="card.name"/>
-        </div>
+        </Draggable>
+        </container>
         <v-card-actions>
           <v-btn
             color="blue lighten-1"
@@ -62,11 +64,14 @@ import ListCard from './ListCard.vue'
 import listEditModal from './ListEditModal.vue'
 import cardAddModal from './CardAddModal.vue'
 import { getAPI } from '../../api/axios-base'
+import { Draggable, Container } from 'vue-smooth-dnd'
 export default {
     components: {
       listEditModal,
       cardAddModal,
-      ListCard
+      ListCard,
+      Container,
+      Draggable
     },
     props: ['listName', 'listid', 'isArchived'],
     data () {
