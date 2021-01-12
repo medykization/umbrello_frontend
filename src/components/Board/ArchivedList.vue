@@ -22,11 +22,18 @@
             </template>
 
             <v-list>
-            <v-list-item
+              <v-list-item
                 link
                 @click="unArchivizeList">
                 <v-list-item-title>
                         UnArchivize list
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                link
+                @click="deleteList">
+                <v-list-item-title>
+                        Delete list
                 </v-list-item-title>
               </v-list-item>
             </v-list>
@@ -82,7 +89,22 @@ export default {
         })
         .then(response => {
             console.log('GetAPI successfully added the board')
+            console.log(response.data)
             window.location.reload()
+            // this.$store.state.APIData = response.data // store the response data in store
+          })
+          .catch(err => { // refresh token expired or some other error status
+            console.log(err)
+          })
+        },
+        deleteList () {
+          getAPI.delete('/boards/delete/list',
+            { id: this.listid },
+            { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
+          })
+          .then(response => {
+            console.log('GetAPI successfully delete the list')
+            // window.location.reload()
             // this.$store.state.APIData = response.data // store the response data in store
           })
           .catch(err => { // refresh token expired or some other error status
