@@ -1,15 +1,16 @@
 <script>
-  import { getAPI } from '../api/axios-base'
+  import { getAPI } from '../../api/axios-base'
   export default {
-    props: ['listid'],
+    props: ['boardid'],
     data: () => ({
       dialog: false,
       name: ''
     }),
     methods: {
-      editListName () {
-      getAPI.put('/boards/update/list',
-        { id: this.listid,
+      addList () {
+          console.log(this.boardid)
+      getAPI.post('/boards/add/list',
+        { id: this.boardid,
           name: this.name },
         { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
       })
@@ -32,18 +33,16 @@
       max-width="600px"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-list-item link
+        <v-btn
           color="primary"
+          dark
           v-bind="attrs"
           v-on="on"
         >
-          Edit
-        </v-list-item>
+          Add
+        </v-btn>
       </template>
       <v-card>
-          <v-card-title>
-          <span class="headline">Edit name</span>
-        </v-card-title>
         <v-card-text>
           <v-container>
               <v-col cols="12">
@@ -71,9 +70,9 @@
             color="blue darken-1"
             text
             type="button"
-            @click="editListName"
+            @click="addList"
           >
-            Update
+            Add
           </v-btn>
         </v-card-actions>
       </v-card>

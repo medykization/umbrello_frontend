@@ -1,15 +1,16 @@
 <script>
-  import { getAPI } from '../api/axios-base'
+  import { getAPI } from '../../api/axios-base'
   export default {
+    props: ['listid'],
     data: () => ({
       dialog: false,
       name: ''
     }),
     methods: {
-      addBoard () {
-      console.log({ name: this.name })
-      getAPI.post('/boards/add',
-        { name: this.name },
+      editListName () {
+      getAPI.put('/boards/update/list',
+        { id: this.listid,
+          name: this.name },
         { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
       })
       .then(response => {
@@ -31,21 +32,23 @@
       max-width="600px"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
+        <v-list-item link
           color="primary"
-          dark
           v-bind="attrs"
           v-on="on"
         >
-          Add
-        </v-btn>
+          Edit
+        </v-list-item>
       </template>
       <v-card>
+          <v-card-title>
+          <span class="headline">Edit name</span>
+        </v-card-title>
         <v-card-text>
           <v-container>
               <v-col cols="12">
                  <v-text-field
-                  label="Name of new board"
+                  label="New name of list"
                   type="text"
                   name="Name"
                   id="Name"
@@ -68,9 +71,9 @@
             color="blue darken-1"
             text
             type="button"
-            @click="addBoard"
+            @click="editListName"
           >
-            Save
+            Update
           </v-btn>
         </v-card-actions>
       </v-card>

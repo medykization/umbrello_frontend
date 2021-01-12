@@ -25,9 +25,9 @@
 </template>
 
 <script>
-  import BoardCard from '../components/BoardCard.vue'
+  import BoardCard from '../components/DashBoard/BoardCard.vue'
   import { getAPI } from '../api/axios-base'
-  import modal from '../components/BoardAddModal.vue'
+  import modal from '../components/DashBoard/BoardAddModal.vue'
   import { mapState } from 'vuex'
   export default {
     components: {

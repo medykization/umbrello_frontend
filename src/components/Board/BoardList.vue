@@ -22,11 +22,23 @@
             </template>
 
             <v-list>
+            <v-list-item link>
+                <v-list-item-title>
+                        Add card...
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item link>
+                <v-list-item-title>
+                    <v-list-item-action>
+                        <modal v-show="isModalVisible" :listid="variableAtParent"/>
+                    </v-list-item-action>
+                </v-list-item-title>
+              </v-list-item>
             <v-list-item
                 link
-                @click="unArchivizeList">
+                @click="archivizeList">
                 <v-list-item-title>
-                        UnArchivize list
+                        Archivize list
                 </v-list-item-title>
               </v-list-item>
             </v-list>
@@ -46,10 +58,12 @@
     </v-card>
 </template>
 <script>
-import ListCard from '../components/ListCard.vue'
-import { getAPI } from '../api/axios-base'
+import ListCard from './ListCard.vue'
+import modal from './ListEditModal.vue'
+import { getAPI } from '../../api/axios-base'
 export default {
     components: {
+      modal,
       ListCard
     },
     props: ['listName', 'listid', 'isArchived'],
@@ -75,7 +89,7 @@ export default {
           })
     },
     methods: {
-        unArchivizeList () {
+        archivizeList () {
         getAPI.put('/boards/archive/list',
           { id: this.listid },
           { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }

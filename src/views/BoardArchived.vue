@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import BoardList from '../components/ArchivedList.vue'
+import BoardList from '../components/Board/ArchivedList.vue'
 import { getAPI } from '../api/axios-base'
 export default {
     components: { BoardList },

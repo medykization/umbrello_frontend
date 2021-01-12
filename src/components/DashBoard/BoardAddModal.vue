@@ -1,17 +1,15 @@
 <script>
-  import { getAPI } from '../api/axios-base'
+  import { getAPI } from '../../api/axios-base'
   export default {
-    props: ['boardid'],
     data: () => ({
       dialog: false,
       name: ''
     }),
     methods: {
-      addList () {
-          console.log(this.boardid)
-      getAPI.post('/boards/add/list',
-        { id: this.boardid,
-          name: this.name },
+      addBoard () {
+      console.log({ name: this.name })
+      getAPI.post('/boards/add',
+        { name: this.name },
         { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
       })
       .then(response => {
@@ -47,7 +45,7 @@
           <v-container>
               <v-col cols="12">
                  <v-text-field
-                  label="New name of list"
+                  label="Name of new board"
                   type="text"
                   name="Name"
                   id="Name"
@@ -70,9 +68,9 @@
             color="blue darken-1"
             text
             type="button"
-            @click="addList"
+            @click="addBoard"
           >
-            Add
+            Save
           </v-btn>
         </v-card-actions>
       </v-card>

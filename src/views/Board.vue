@@ -37,9 +37,9 @@
   </div>
 </template>
 <script>
-import BoardList from '../components/BoardList.vue'
+import BoardList from '../components/Board/BoardList.vue'
 import { getAPI } from '../api/axios-base'
-import modal from '../components/ListAddModal.vue'
+import modal from '../components/Board/ListAddModal.vue'
 export default {
     components: { BoardList,
     modal },
