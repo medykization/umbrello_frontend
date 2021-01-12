@@ -22,7 +22,15 @@
         <v-card-text>
           <v-container>
               <v-col cols="12">
-                 <h3>{{card_name}}</h3>
+                <v-flex>
+                    <h2>{{card_name}}</h2>
+                    <v-card flat class="ma-5">
+                    <h3>Description</h3>
+                    <v-flex class="ml-2">{{card_description}}</v-flex>
+                    <h3>Deadline</h3>
+                    <v-flex class="ml-2">{{card_term}}</v-flex>
+                    </v-card>
+                </v-flex>
               </v-col>
           </v-container>
         </v-card-text>
