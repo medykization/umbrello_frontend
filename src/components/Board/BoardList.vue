@@ -46,7 +46,7 @@
         </v-card-title>
         <container>
         <Draggable v-for="card in cards" :key="card.id">
-          <ListCard :card_name="card.name"/>
+          <ListCard :card_name="card.name" :card_id="card.id" :card_description="card.description" :card_term="card.term"/>
         </Draggable>
         </container>
         <v-card-actions>

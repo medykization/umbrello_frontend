@@ -10,7 +10,7 @@
     }),
     methods: {
       addCard () {
-      getAPI.put('/boards/add/card',
+      getAPI.post('/boards/add/card',
         { id: this.listid,
           name: this.name,
           description: this.description,
