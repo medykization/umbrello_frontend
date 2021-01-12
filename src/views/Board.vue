@@ -6,6 +6,7 @@
       color="rgb(0, 0, 0, 0.2)"
       class="pl-5"
       dark
+      dense
     >
       <v-toolbar-title>{{ $route.params.name }}</v-toolbar-title>
       <v-spacer></v-spacer>
