@@ -28,7 +28,18 @@
                     <h3>Description</h3>
                     <editable-text v-model="description" :placeholder="description" />
                     <h3>Deadline</h3>
-                    <v-flex class="ml-2">{{card_term}}</v-flex>
+                            <div v-if="!editing">
+                              <span class='text' @click="enableEditing">{{value}}</span>
+                            </div>
+                            <div v-if="editing">
+                              <v-text-field
+                                v-model="tempValue"
+                                label="Deadline"
+                                type="date"
+                                name="Term"
+                                id="Term"
+                              ></v-text-field>
+                            </div>
                     </v-card>
                 </v-flex>
               </v-col>
@@ -76,6 +87,9 @@ export default {
       cardDialog: false,
       description: this.card_description,
       cardName: this.card_name,
+      value: this.card_term,
+        tempValue: null,
+        editing: false
       archivizeButtonText: this.archivize_button_text
     }
   },
@@ -86,7 +100,7 @@ export default {
                 id: this.card_id,
                 name: this.cardName,
                 description: this.description,
-                term: this.card_term
+                term: this.tempValue
               },
               { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
                 console.log('GetAPI successfully changed card')
@@ -95,6 +109,7 @@ export default {
               .catch(err => { // refresh token expired or some other error status
                 console.log(err)
               })
+              this.disableEditing()
         },
         archivize () {
             getAPI.put('/boards/archive/card',
@@ -108,6 +123,14 @@ export default {
               .catch(err => { // refresh token expired or some other error status
                 console.log(err)
               })
+        },
+        enableEditing: function () {
+            this.tempValue = this.value
+            this.editing = true
+        },
+        disableEditing: function () {
+            this.tempValue = this.value
+            this.editing = false
         }
     }
 }
