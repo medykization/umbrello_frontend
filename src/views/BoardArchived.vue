@@ -14,13 +14,13 @@
             color="rgb(255, 255, 255, 0.7)">
             <v-card-title><h6>ARCHIVED CARDS</h6></v-card-title>
             <div v-for="card in archivedCards" :key="card.id">
-              <ListCard :card_name="card.name" :card_id="card.id" :card_description="card.description" :card_term="card.term"/>
+              <ArchivedCard :card_name="card.name" :card_id="card.id" :card_description="card.description" :card_term="card.term"/>
             </div>
             </v-card>
         </v-flex>
         <v-flex v-for="list in archivedLists" :key="list.id" xs8 md4 lg3>
             <div >
-              <ArchivedBoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
+              <ArchivedList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
             </div>
         </v-flex>
       </v-layout>
@@ -28,11 +28,11 @@
   </div>
 </template>
 <script>
-import ArchivedBoardList from '../components/Board/ArchivedList.vue'
-import ListCard from '../components/Board/ListCard.vue'
+import ArchivedList from '../components/Board/ArchivedList.vue'
+import ArchivedCard from '../components/Board/ArchivedCard.vue'
 import { getAPI } from '../api/axios-base'
 export default {
-    components: { ArchivedBoardList, ListCard },
+    components: { ArchivedList, ArchivedCard },
     data () {
     return {
       variableAtParent: this.$route.params.id,

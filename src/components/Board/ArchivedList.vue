@@ -40,16 +40,16 @@
           </v-menu>
         </v-card-title>
         <div v-for="card in cards" :key="card.id">
-          <ListCard :card_name="card.name" :archivize_button_text="'Archive'"/>
+          <ArchivedCard :card_name="card.name" :card_description="card.description" :card_term="card.term"/>
         </div>
     </v-card>
 </template>
 <script>
-import ListCard from './ListCard.vue'
+import ArchivedCard from './ArchivedCard.vue'
 import { getAPI } from '../../api/axios-base'
 export default {
     components: {
-      ListCard
+      ArchivedCard
     },
     props: ['listName', 'listid', 'isArchived'],
     data () {
