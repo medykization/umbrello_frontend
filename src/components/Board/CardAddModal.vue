@@ -42,12 +42,12 @@
           v-bind="attrs"
           v-on="on"
         >
-        Add new card
+        New Card
         </v-list-item>
       </template>
       <v-card>
           <v-card-title>
-          <span class="headline">New card</span>
+          <span class="headline">New Card</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -92,7 +92,7 @@
             type="button"
             @click="addCard"
           >
-            Update
+            Add
           </v-btn>
         </v-card-actions>
       </v-card>

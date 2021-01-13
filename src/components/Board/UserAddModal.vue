@@ -12,7 +12,7 @@
           small
           color="rgb(0, 0, 0, 0.01)"
           dark
-        >TEAM</v-btn>
+        >ADD TEAM MEMBER</v-btn>
       </template>
       <v-card>
           <v-card-title>
@@ -55,17 +55,30 @@
 </template>
 
 <script>
-
-  // import { getAPI } from '../../api/axios-base'
+import { getAPI } from '../../api/axios-base'
   export default {
-    props: ['boardid'],
+    props: ['board_id'],
     data: () => ({
       dialog: false,
       username: ''
     }),
     methods: {
       addUser () {
+        getAPI.post('/boards/add/user',
+        {
+          id: this.board_id,
+          name: this.username
+        },
+        { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
+      .then(response => {
+          console.log('GetAPI add user')
+          window.location.reload()
+          // this.$store.state.APIData = response.data // store the response data in store
+        })
+        .catch(err => { // refresh token expired or some other error status
+          console.log(err)
+        })
+      }
       }
     }
-  }
 </script>
