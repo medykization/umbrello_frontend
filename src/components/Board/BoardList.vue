@@ -38,7 +38,7 @@
                 link
                 @click="archivizeList">
                 <v-list-item-title>
-                        Archivize list
+                  Archive list
                 </v-list-item-title>
               </v-list-item>
             </v-list>
@@ -46,7 +46,7 @@
         </v-card-title>
         <container>
         <Draggable v-for="card in nonArchivedCards" :key="card.id">
-          <ListCard :card_name="card.name" :card_id="card.id" :card_description="card.description" :card_term="card.term" :archivize_button_text="'Archive'"/>
+          <ListCard :card_name="card.name" :card_id="card.id" :card_description="card.description" :card_term="card.term"/>
         </Draggable>
         </container>
         <v-card-actions>

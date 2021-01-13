@@ -26,7 +26,7 @@
                 link
                 @click="unArchivizeList">
                 <v-list-item-title>
-                        UnArchivize list
+                        Unarchive list
                 </v-list-item-title>
               </v-list-item>
               <v-list-item
@@ -88,12 +88,12 @@ export default {
           })
         },
         deleteList () {
-          getAPI.delete('/boards/delete/list',
+          getAPI.post('/boards/delete/list',
             { id: this.listid },
             { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
           .then(response => {
             console.log('GetAPI successfully delete the list')
-            // window.location.reload()
+            window.location.reload()
             // this.$store.state.APIData = response.data // store the response data in store
           })
           .catch(err => { // refresh token expired or some other error status
