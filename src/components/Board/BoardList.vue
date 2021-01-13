@@ -45,7 +45,7 @@
           </v-menu>
         </v-card-title>
         <container>
-        <Draggable v-for="card in cards" :key="card.id">
+        <Draggable v-for="card in nonArchivedCards" :key="card.id">
           <ListCard :card_name="card.name" :card_id="card.id" :card_description="card.description" :card_term="card.term"/>
         </Draggable>
         </container>
@@ -80,6 +80,13 @@ export default {
         isListEditModalVisible: true,
         variableAtParent: this.listid,
         cards: []
+      }
+    },
+    computed: {
+    nonArchivedCards: function () {
+      return this.cards.filter(function (list) {
+          return list.archived === false
+        })
       }
     },
     created () {
