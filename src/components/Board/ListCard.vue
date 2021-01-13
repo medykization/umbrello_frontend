@@ -27,7 +27,6 @@
                     <v-card flat class="ma-5">
                     <h3>Description</h3>
                     <editable-text v-model="description" :placeholder="description" />
-                    <!-- <v-flex class="ml-2">{{card_description}}</v-flex> -->
                     <h3>Deadline</h3>
                     <v-flex class="ml-2">{{card_term}}</v-flex>
                     </v-card>
@@ -81,7 +80,6 @@ export default {
   },
   methods: {
         saveAndClose () {
-          console.log(this.listid)
               getAPI.put('/boards/update/card',
               {
                 id: this.card_id,
@@ -92,14 +90,12 @@ export default {
               { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
                 console.log('GetAPI successfully changed card')
                 window.location.reload()
-                // this.$store.state.APIData = response.data // store the response data in store
               })
               .catch(err => { // refresh token expired or some other error status
                 console.log(err)
               })
         },
         archivize () {
-            console.log(this.listid)
             getAPI.put('/boards/archive/card',
               {
                 id: this.card_id
@@ -107,7 +103,6 @@ export default {
               { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
                 console.log('GetAPI successfully archived card')
                 window.location.reload()
-                // this.$store.state.APIData = response.data // store the response data in store
               })
               .catch(err => { // refresh token expired or some other error status
                 console.log(err)
