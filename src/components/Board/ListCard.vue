@@ -64,7 +64,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="cardDialog = false"
+            @click="cardDialog = false;editing = false"
           >
             Close
           </v-btn>
@@ -88,8 +88,8 @@ export default {
       description: this.card_description,
       cardName: this.card_name,
       value: this.card_term,
-        tempValue: null,
-        editing: false
+        tempValue: this.card_term,
+        editing: false,
       archivizeButtonText: this.archivize_button_text
     }
   },
