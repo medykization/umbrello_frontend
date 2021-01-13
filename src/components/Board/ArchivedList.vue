@@ -42,14 +42,6 @@
         <div v-for="card in cards" :key="card.id">
           <ListCard :card_name="card.name"/>
         </div>
-        <v-card-actions>
-          <v-btn
-            color="blue lighten-1"
-            text
-          >
-          + Add new card
-          </v-btn>
-        </v-card-actions>
     </v-card>
 </template>
 <script>
