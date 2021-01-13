@@ -13,7 +13,7 @@
             elevation="1"
             color="white"
             block
-            class="ma-2 pa-2"
+            class="pa-1 ma-2"
             min-width="100">
             <v-card-subtitle> {{card_name}} </v-card-subtitle>
             </v-card>
@@ -40,7 +40,7 @@
             text
             @click="archivize"
           >
-            Archivize
+            {{archivizeButtonText}}
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn
@@ -70,12 +70,13 @@ export default {
     components: {
         EditableText
     },
-    props: ['card_id', 'card_name', 'card_description', 'card_order', 'card_archived', 'card_term'],
+    props: ['card_id', 'card_name', 'card_description', 'card_order', 'card_archived', 'card_term', 'archivize_button_text'],
     data () {
     return {
       cardDialog: false,
       description: this.card_description,
-      cardName: this.card_name
+      cardName: this.card_name,
+      archivizeButtonText: this.archivize_button_text
     }
   },
   methods: {
