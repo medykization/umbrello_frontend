@@ -40,7 +40,7 @@
           </v-menu>
         </v-card-title>
         <div v-for="card in cards" :key="card.id">
-          <ArchivedCard :card_name="card.name" :card_description="card.description" :card_term="card.term"/>
+          <ArchivedCard :card_id="card.id" :card_name="card.name" :card_description="card.description" :card_term="card.term"/>
         </div>
     </v-card>
 </template>

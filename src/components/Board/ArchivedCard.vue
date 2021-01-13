@@ -86,7 +86,7 @@ export default {
               },
               { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
                 console.log('GetAPI successfully archived card')
-                // window.location.reload()
+                window.location.reload()
               })
               .catch(err => { // refresh token expired or some other error status
                 console.log(err)
@@ -99,7 +99,7 @@ export default {
               },
               { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
                 console.log('GetAPI successfully archived card')
-                // window.location.reload()
+                window.location.reload()
               })
               .catch(err => { // refresh token expired or some other error status
                 console.log(err)

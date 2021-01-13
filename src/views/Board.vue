@@ -27,8 +27,8 @@
           </v-btn>
       </div>
       <v-spacer></v-spacer>
-      <v-btn @click="routeArchived()" type="button"
-        class="ma-1"
+      <v-btn @click="routeArchived()"
+        class="ma-1 mr-4"
         color="rgb(0, 0, 0, 0.01)"
         dark>
         Archived

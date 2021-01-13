@@ -1,6 +1,23 @@
 <template>
     <div fluid fill-height>
-    <!-- <header>{{ $route.params.name }}</header> -->
+      <!-- APP BAR -->
+    <v-app-bar
+      flat
+      color="rgb(0, 0, 0, 0.2)"
+      class="pl-5"
+      dark
+      dense
+    >
+      {{$route.params.name}}
+      <v-spacer></v-spacer>
+      <v-btn @click="routeBoard()"
+        class="ma-1 mr-4"
+        color="rgb(0, 0, 0, 0.01)"
+        dark>
+        Back
+      </v-btn>
+    </v-app-bar>
+    <!-- END APP BAR -->
     <v-container class="ma-2">
       <v-layout row wrap class="mt-1">
         <v-flex xs8 md4 lg4>
@@ -47,6 +64,13 @@ export default {
         return list.archived === true
       })
     }
+    },
+    methods: {
+      routeBoard () {
+          var boardURL = '/board/'
+          boardURL = boardURL.concat(this.$route.params.id, '/', this.$route.params.name)
+          this.$router.push({ path: boardURL })
+        }
     },
     created () {
       // GET ARCHIVED LISTS
