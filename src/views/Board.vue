@@ -8,21 +8,31 @@
       dark
       dense
     >
-      <v-toolbar-title>{{ $route.params.name }}</v-toolbar-title>
+     <div v-if="!editing">
+        <span class='text' @click="enableEditing">{{value}}</span>
+      </div>
+      <div v-if="editing">
+        <input v-model="tempValue" class="input"/>
+            <v-btn @click="disableEditing" type="button"
+            class="ma-1"
+            color="rgb(0, 0, 0, 0.01)"
+            dark>
+            Cancel
+          </v-btn>
+          <v-btn @click="saveEdit" type="button"
+            class="ma-1"
+            color="rgb(0, 0, 0, 0.01)"
+            dark>
+            Save
+          </v-btn>
+      </div>
       <v-spacer></v-spacer>
       <v-btn
         class="ma-1"
         color="rgb(0, 0, 0, 0.01)"
         dark
       >
-        SMTH
-      </v-btn>
-      <v-btn
-        class="ma-1"
-        color="rgb(0, 0, 0, 0.01)"
-        dark
-      >
-        SMTH
+        Name Edit
       </v-btn>
       <v-btn @click="routeArchived()" type="button"
         class="ma-1"
@@ -61,7 +71,10 @@ export default {
     return {
       variableAtParent: this.$route.params.id,
       boardLists: [],
-      isModalVisible: true
+      isModalVisible: true,
+      value: this.$route.params.name,
+        tempValue: null,
+        editing: false
       }
     },
     computed: {
@@ -89,7 +102,31 @@ export default {
           var archivedURL = '/board/'
           archivedURL = archivedURL.concat(this.$route.params.id, '/', this.$route.params.name, '/archived')
           this.$router.push({ path: archivedURL })
+        },
+        enableEditing: function () {
+            this.tempValue = this.value
+            this.editing = true
+        },
+        disableEditing: function () {
+            this.tempValue = null
+            this.editing = false
+        },
+        saveEdit: function () {
+          this.value = this.tempValue
+            getAPI.put('/boards/update',
+              {
+                id: this.variableAtParent,
+                name: this.value
+              },
+              { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
+                console.log('GetAPI successfully changed name of board')
+                // window.location.reload()
+              })
+              .catch(err => { // refresh token expired or some other error status
+                console.log(err)
+              })
+            this.disableEditing()
         }
-      }
+    }
 }
 </script>
