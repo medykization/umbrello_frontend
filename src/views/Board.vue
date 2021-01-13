@@ -16,24 +16,22 @@
             <v-btn @click="disableEditing" type="button"
             class="ma-1"
             color="rgb(0, 0, 0, 0.01)"
-            dark>
+            dark
+            small>
             Cancel
           </v-btn>
           <v-btn @click="saveEdit" type="button"
             class="ma-1"
             color="rgb(0, 0, 0, 0.01)"
-            dark>
+            dark
+            small>
             Save
           </v-btn>
       </div>
       <v-spacer></v-spacer>
-      <v-btn
-        class="ma-1"
-        small
-        color="rgb(0, 0, 0, 0.01)"
-        dark>
-        Team
-      </v-btn>
+      <div>
+        <userAddModal v-show="isUserAddModalVisible" :board_id="variableAtParent"/>
+      </div>
       <v-btn @click="routeArchived()"
         class="ma-1 mr-4"
         small
@@ -50,7 +48,7 @@
             </Draggable>
         </Container>
         <v-flex xs8 md4 lg3 class="mt-2">
-          <modal v-show="isModalVisible" :boardid="variableAtParent"/>
+          <listAddModal v-show="isModalVisible" :boardid="variableAtParent"/>
         </v-flex>
       </v-layout>
     </v-container>
@@ -59,12 +57,14 @@
 <script>
 import BoardList from '../components/Board/BoardList.vue'
 import { getAPI } from '../api/axios-base'
-import modal from '../components/Board/ListAddModal.vue'
+import listAddModal from '../components/Board/ListAddModal.vue'
+import userAddModal from '../components/Board/UserAddModal.vue'
 import { Draggable, Container } from 'vue-smooth-dnd'
 export default {
     components: {
       BoardList,
-      modal,
+      listAddModal,
+      userAddModal,
       Draggable,
       Container
       },
@@ -73,6 +73,7 @@ export default {
       variableAtParent: this.$route.params.id,
       boardLists: [],
       isModalVisible: true,
+      isUserAddModalVisible: true,
       value: this.$route.params.name,
         tempValue: null,
         editing: false
