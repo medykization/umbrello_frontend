@@ -51,7 +51,7 @@
             text
             @click="archivize"
           >
-            {{archivizeButtonText}}
+            Archive
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn
@@ -81,7 +81,7 @@ export default {
     components: {
         EditableText
     },
-    props: ['card_id', 'card_name', 'card_description', 'card_order', 'card_archived', 'card_term', 'archivize_button_text'],
+    props: ['card_id', 'card_name', 'card_description', 'card_order', 'card_archived', 'card_term'],
     data () {
     return {
       cardDialog: false,
@@ -89,8 +89,7 @@ export default {
       cardName: this.card_name,
       value: this.card_term,
         tempValue: this.card_term,
-        editing: false,
-      archivizeButtonText: this.archivize_button_text
+        editing: false
     }
   },
   methods: {
@@ -118,7 +117,7 @@ export default {
               },
               { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
                 console.log('GetAPI successfully archived card')
-                window.location.reload()
+                // window.location.reload()
               })
               .catch(err => { // refresh token expired or some other error status
                 console.log(err)
