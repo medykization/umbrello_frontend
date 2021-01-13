@@ -23,7 +23,7 @@
           <v-container>
               <v-col cols="12">
                 <v-flex>
-                    <h2 editable>{{card_name}}</h2>
+                    <editable-text v-model="cardName" :placeholder="cardName" />
                     <v-card flat class="ma-5">
                     <h3>Description</h3>
                     <editable-text v-model="description" :placeholder="description" />
@@ -36,6 +36,13 @@
           </v-container>
         </v-card-text>
         <v-card-actions>
+           <v-btn
+            color="blue darken-1"
+            text
+            @click="archivize"
+          >
+            Archivize
+          </v-btn>
           <v-spacer></v-spacer>
           <v-btn
             color="blue darken-1"
@@ -59,13 +66,8 @@
 <script>
 
 import EditableText from '@marshal/vue-editable-text'
+import { getAPI } from '../../api/axios-base'
 export default {
-    methods: {
-        saveAndClose () {
-            // TO DO: SAVE
-            this.cardDialog = false
-        }
-    },
     components: {
         EditableText
     },
@@ -73,8 +75,44 @@ export default {
     data () {
     return {
       cardDialog: false,
-      description: this.card_description
+      description: this.card_description,
+      cardName: this.card_name
     }
-  }
+  },
+  methods: {
+        saveAndClose () {
+          console.log(this.listid)
+              getAPI.put('/boards/update/card',
+              {
+                id: this.card_id,
+                name: this.cardName,
+                description: this.description,
+                term: this.card_term
+              },
+              { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
+                console.log('GetAPI successfully changed card')
+                window.location.reload()
+                // this.$store.state.APIData = response.data // store the response data in store
+              })
+              .catch(err => { // refresh token expired or some other error status
+                console.log(err)
+              })
+        },
+        archivize () {
+            console.log(this.listid)
+            getAPI.put('/boards/archive/card',
+              {
+                id: this.card_id
+              },
+              { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
+                console.log('GetAPI successfully archived card')
+                window.location.reload()
+                // this.$store.state.APIData = response.data // store the response data in store
+              })
+              .catch(err => { // refresh token expired or some other error status
+                console.log(err)
+              })
+        }
+    }
 }
 </script>
