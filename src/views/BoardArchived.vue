@@ -5,18 +5,17 @@
       <v-layout row wrap class="mt-1">
         <v-flex xs8 md4 lg4>
           <v-card
-
             elevation="5"
             block
             min-height="100"
             min-width="250"
             max-width="250"
-            class="ma-2"
-            color="rgb(255, 255, 255, 0.4)">
+            class="ma-2 mt-4"
+            color="rgb(255, 255, 255, 0.7)">
             <v-card-title><h6>ARCHIVED CARDS</h6></v-card-title>
-            <v-container v-for="card in archivedCards" :key="card.id">
+            <div v-for="card in archivedCards" :key="card.id">
               <ListCard :card_name="card.name" :card_id="card.id" :card_description="card.description" :card_term="card.term" :archivize_button_text="'Unarchive'"/>
-            </v-container>
+            </div>
             </v-card>
         </v-flex>
         <v-flex v-for="list in archivedLists" :key="list.id" xs8 md4 lg3>
