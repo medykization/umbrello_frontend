@@ -12,7 +12,6 @@
         class="ma-5">
         <v-container class="blue lighten-3"></v-container>
         <v-card-title>{{boardName}}</v-card-title>
-        <v-card-subtitle>{{boardid}}</v-card-subtitle>
         </v-card>
     </v-hover>
   </div>

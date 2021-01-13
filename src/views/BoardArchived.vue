@@ -12,6 +12,7 @@
       <v-spacer></v-spacer>
       <v-btn @click="routeBoard()"
         class="ma-1 mr-4"
+        small
         color="rgb(0, 0, 0, 0.01)"
         dark>
         Back
