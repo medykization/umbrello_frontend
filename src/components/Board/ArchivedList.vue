@@ -68,8 +68,7 @@ export default {
       }
     },
     created () {
-        getAPI.post('/boards/cards', { id: this.listid }, {
-          headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
+        getAPI.post('/boards/cards', { id: this.listid }, { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
           // axios getAPI response interceptor will attempt to get a new  access token from the server. check out ../api/axios-base.js getAPI instance response interceptor
           .then(response => {
             console.log('GetAPI successfully got the cards')
@@ -85,8 +84,7 @@ export default {
         unArchivizeList () {
         getAPI.put('/boards/archive/list',
           { id: this.listid },
-          { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
-        })
+          { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
         .then(response => {
             console.log('GetAPI successfully added the board')
             console.log(response.data)
@@ -100,8 +98,7 @@ export default {
         deleteList () {
           getAPI.delete('/boards/delete/list',
             { id: this.listid },
-            { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
-          })
+            { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
           .then(response => {
             console.log('GetAPI successfully delete the list')
             // window.location.reload()

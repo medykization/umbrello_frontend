@@ -10,10 +10,10 @@
             v-bind="attrs"
             outlined
             min-height="55"
-            elevation="7"
+            elevation="1"
             color="white"
             block
-            class="ma-2 pa-3"
+            class="ma-2 pa-2"
             min-width="100">
             <v-card-subtitle> {{card_name}} </v-card-subtitle>
             </v-card>
@@ -23,10 +23,11 @@
           <v-container>
               <v-col cols="12">
                 <v-flex>
-                    <h2>{{card_name}}</h2>
+                    <h2 editable>{{card_name}}</h2>
                     <v-card flat class="ma-5">
                     <h3>Description</h3>
-                    <v-flex class="ml-2">{{card_description}}</v-flex>
+                    <editable-text v-model="description" :placeholder="description" />
+                    <!-- <v-flex class="ml-2">{{card_description}}</v-flex> -->
                     <h3>Deadline</h3>
                     <v-flex class="ml-2">{{card_term}}</v-flex>
                     </v-card>
@@ -36,6 +37,13 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="saveAndClose"
+          >
+            Save
+          </v-btn>
           <v-btn
             color="blue darken-1"
             text
@@ -49,11 +57,23 @@
 </v-card>
 </template>
 <script>
+
+import EditableText from '@marshal/vue-editable-text'
 export default {
+    methods: {
+        saveAndClose () {
+            // TO DO: SAVE
+            this.cardDialog = false
+        }
+    },
+    components: {
+        EditableText
+    },
     props: ['card_id', 'card_name', 'card_description', 'card_order', 'card_archived', 'card_term'],
     data () {
     return {
-      cardDialog: false
+      cardDialog: false,
+      description: this.card_description
     }
   }
 }

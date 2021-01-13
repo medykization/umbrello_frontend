@@ -1,4 +1,5 @@
 <script>
+
   import { getAPI } from '../../api/axios-base'
   export default {
     props: ['listid'],
@@ -11,13 +12,13 @@
     methods: {
       addCard () {
       getAPI.post('/boards/add/card',
-        { id: this.listid,
+        {
+          id: this.listid,
           name: this.name,
           description: this.description,
-          term: this.term },
-        { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
-      })
-      .then(response => {
+          term: this.term
+        },
+        { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
           console.log('GetAPI successfully added the board')
           window.location.reload()
           // this.$store.state.APIData = response.data // store the response data in store

@@ -5,7 +5,7 @@
         min-height="100"
         min-width="250"
         max-width="250"
-        class="ma-4">
+        class="ma-2">
         <v-card-title class="grey lighten-5">
             <h6>{{listName}}</h6>
             <v-spacer></v-spacer>
@@ -83,8 +83,7 @@ export default {
       }
     },
     created () {
-        getAPI.post('/boards/cards', { id: this.listid }, {
-          headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
+        getAPI.post('/boards/cards', { id: this.listid }, { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
           // axios getAPI response interceptor will attempt to get a new  access token from the server. check out ../api/axios-base.js getAPI instance response interceptor
           .then(response => {
             console.log('GetAPI successfully got the cards')
@@ -100,9 +99,7 @@ export default {
         archivizeList () {
         getAPI.put('/boards/archive/list',
           { id: this.listid },
-          { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
-        })
-        .then(response => {
+          { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
             console.log('GetAPI successfully added the board')
             window.location.reload()
             // this.$store.state.APIData = response.data // store the response data in store

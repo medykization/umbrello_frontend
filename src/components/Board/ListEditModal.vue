@@ -9,10 +9,11 @@
     methods: {
       editListName () {
       getAPI.put('/boards/update/list',
-        { id: this.listid,
-          name: this.name },
-        { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
-      })
+        {
+ id: this.listid,
+          name: this.name
+},
+        { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
       .then(response => {
           console.log('GetAPI successfully added the board')
           window.location.reload()

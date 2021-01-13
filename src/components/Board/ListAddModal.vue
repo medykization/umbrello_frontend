@@ -10,10 +10,11 @@
       addList () {
           console.log(this.boardid)
       getAPI.post('/boards/add/list',
-        { id: this.boardid,
-          name: this.name },
-        { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` }
-      })
+        {
+ id: this.boardid,
+          name: this.name
+},
+        { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
       .then(response => {
           console.log('GetAPI successfully added the board')
           window.location.reload()
@@ -33,14 +34,17 @@
       max-width="600px"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
+        <v-card
+          elevation="5"
+          min-height="50"
+          min-width="250"
+          max-width="250"
           v-bind="attrs"
           v-on="on"
+          color="rgb(255, 255, 255, 0.4)"
         >
-          Add
-        </v-btn>
+        <v-card-title><h6>+ Add another list</h6></v-card-title>
+        </v-card>
       </template>
       <v-card>
         <v-card-text>

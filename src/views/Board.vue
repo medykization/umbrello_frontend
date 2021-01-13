@@ -38,20 +38,8 @@
               <BoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
             </Draggable>
         </Container>
-        <v-flex xs8 md4 lg3 class="ma-2">
-          <v-card
-              min-height="120"
-              elevation="7"
-              color="white"
-              block
-              class="ma-2 pa-3"
-              min-width="100">
-            <v-card-actions>
-                <v-card-actions>
-                  <modal v-show="isModalVisible" :boardid="variableAtParent"/>
-                </v-card-actions>
-            </v-card-actions>
-          </v-card>
+        <v-flex xs8 md4 lg3 class="mt-2">
+          <modal v-show="isModalVisible" :boardid="variableAtParent"/>
         </v-flex>
       </v-layout>
     </v-container>
@@ -67,7 +55,8 @@ export default {
       BoardList,
       modal,
       Draggable,
-      Container },
+      Container
+      },
     data () {
     return {
       variableAtParent: this.$route.params.id,
@@ -78,12 +67,12 @@ export default {
     computed: {
     nonArchivedLists: function () {
       return this.boardLists.filter(function (list) {
-        return list.archived === false
-      })
-    } },
+          return list.archived === false
+        })
+      }
+    },
     created () {
-        getAPI.post('/boards/lists', { id: this.$route.params.id }, {
-          headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
+        getAPI.post('/boards/lists', { id: this.$route.params.id }, { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
         // axios getAPI response interceptor will attempt to get a new  access token from the server. check out ../api/axios-base.js getAPI instance response interceptor
           .then(response => {
             console.log('GetAPI successfully got the lists')

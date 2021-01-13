@@ -29,10 +29,10 @@ export default {
       return this.boardLists.filter(function (list) {
         return list.archived === true
       })
-    } },
+    }
+},
     created () {
-        getAPI.post('/boards/lists', { id: this.$route.params.id }, {
-          headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
+        getAPI.post('/boards/lists', { id: this.$route.params.id }, { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
         // axios getAPI response interceptor will attempt to get a new  access token from the server. check out ../api/axios-base.js getAPI instance response interceptor
           .then(response => {
             console.log('GetAPI successfully got the lists')
