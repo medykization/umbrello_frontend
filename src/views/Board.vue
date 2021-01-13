@@ -27,13 +27,6 @@
           </v-btn>
       </div>
       <v-spacer></v-spacer>
-      <v-btn
-        class="ma-1"
-        color="rgb(0, 0, 0, 0.01)"
-        dark
-      >
-        Name Edit
-      </v-btn>
       <v-btn @click="routeArchived()" type="button"
         class="ma-1"
         color="rgb(0, 0, 0, 0.01)"
