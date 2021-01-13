@@ -40,14 +40,26 @@
 
 <style>
 html {
-  overflow: hidden !important;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow: overlay;
 }
 
 html::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 15px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #202020;
+  border-left: 1px solid #2c2c2c;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #3e3e3e;
+  border: solid 3px #202020;
+  border-radius: 7px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: white;
 }
 
 .bg {
