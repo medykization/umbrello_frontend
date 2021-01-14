@@ -42,11 +42,11 @@ import { getAPI } from '../../api/axios-base'
             checked: false
           },
           {
-            name: 'leonard',
+            name: 'testowy1',
             checked: false
           },
           {
-            name: 'testowy',
+            name: 'testowy2',
             checked: false
           }
         ]

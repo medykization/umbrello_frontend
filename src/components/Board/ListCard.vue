@@ -23,7 +23,7 @@
           <v-container>
               <v-col cols="12">
                 <v-flex>
-                    <editable-text v-model="cardName" :placeholder="cardName" />
+                    <h3><editable-text v-model="cardName" :placeholder="cardName" /></h3>
                     <v-card flat class="ma-5">
                     <h3>Description</h3>
                     <editable-text v-model="description" :placeholder="description" />
