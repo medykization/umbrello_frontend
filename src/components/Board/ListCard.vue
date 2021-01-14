@@ -44,6 +44,8 @@
                 </v-flex>
               </v-col>
           </v-container>
+          <users-table :card_id="card_id"
+            class="mx-16"/>
         </v-card-text>
         <v-card-actions>
            <v-btn
@@ -74,12 +76,13 @@
 </v-card>
 </template>
 <script>
-
+import UsersTable from './CardUsersTable.vue'
 import EditableText from '@marshal/vue-editable-text'
 import { getAPI } from '../../api/axios-base'
 export default {
     components: {
-        EditableText
+        EditableText,
+        UsersTable
     },
     props: ['card_id', 'card_name', 'card_description', 'card_order', 'card_archived', 'card_term'],
     data () {
