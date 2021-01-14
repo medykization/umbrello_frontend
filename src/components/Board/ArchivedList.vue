@@ -60,13 +60,9 @@ export default {
       }
     },
     created () {
-        getAPI.post('/boards/cards', { id: this.listid }, { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }) // proof that your access token is still valid; if not the
-          // axios getAPI response interceptor will attempt to get a new  access token from the server. check out ../api/axios-base.js getAPI instance response interceptor
+        getAPI.post('/boards/cards', { id: this.listid }, { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
           .then(response => {
-            console.log('GetAPI successfully got the cards')
-            console.log(response.data)
             this.cards = response.data
-            // this.$store.state.APIData = response.data // store the response data in store
           })
           .catch(err => { // refresh token expired or some other error status
             console.log(err)
@@ -76,12 +72,8 @@ export default {
         unArchivizeList () {
         getAPI.put('/boards/archive/list',
           { id: this.listid },
-          { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
-        .then(response => {
-            console.log('GetAPI successfully added the board')
-            console.log(response.data)
+          { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } }).then(response => {
             window.location.reload()
-            // this.$store.state.APIData = response.data // store the response data in store
           })
           .catch(err => { // refresh token expired or some other error status
             console.log(err)
@@ -92,9 +84,7 @@ export default {
             { id: this.listid },
             { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
           .then(response => {
-            console.log('GetAPI successfully delete the list')
             window.location.reload()
-            // this.$store.state.APIData = response.data // store the response data in store
           })
           .catch(err => { // refresh token expired or some other error status
             console.log(err)
