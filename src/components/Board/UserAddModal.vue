@@ -12,11 +12,11 @@
           small
           color="rgb(0, 0, 0, 0.01)"
           dark
-        >ADD TEAM MEMBER</v-btn>
+        >INVITE</v-btn>
       </template>
       <v-card>
           <v-card-title>
-          <span class="headline">New team member</span>
+          <span class="headline">Invite to board</span>
         </v-card-title>
         <v-card-text>
           <v-container>
