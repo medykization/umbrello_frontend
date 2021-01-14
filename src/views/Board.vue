@@ -42,12 +42,12 @@
     </v-app-bar>
     <v-container class="my-2">
       <v-layout row class="mt-1">
-        <Container v-for="list in nonArchivedLists" :key="list.id" xs8 md4 lg3>
+        <Container v-for="list in nonArchivedLists" :key="list.id" xs8 md3 lg3>
             <Draggable>
               <BoardList :listName="list.name" :listid="list.id" :isArchived="list.archived"/>
             </Draggable>
         </Container>
-        <v-flex xs8 md4 lg3 class="mt-2">
+        <v-flex xs8 md3 lg3 class="mt-2">
           <listAddModal v-show="isModalVisible" :boardid="variableAtParent"/>
         </v-flex>
       </v-layout>
